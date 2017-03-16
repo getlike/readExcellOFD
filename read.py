@@ -15,7 +15,7 @@ xl_workbook = xlrd.open_workbook(fname)
 
 # List sheet names, and pull a sheet by name
 #
-sheet_names = xl_workbook.sheet_names()
+sheet_names = xl_workbook.sheet_names()#масив листов
 #print('Sheet Names', sheet_names)#вывели названия листов
 
 
@@ -25,25 +25,31 @@ sheet_names = xl_workbook.sheet_names()
 #  (sheets are zero-indexed)
 #
 xl_sheet = xl_workbook.sheet_by_index(0)
-#print ('Sheet name: %s' % xl_sheet.name)
+print ('Sheet name: %s' % xl_sheet.name)
 
 # Pull the first row by index
 #  (rows/columns are also zero-indexed)
 #
 row = xl_sheet.row(0)  # 1st row
+print(len(row))
+#перебор масива строк
+# i=0
+# while(xl_sheet.row(i)!=''):
+#     i += 1
+#     print(xl_sheet.row(i))
 
-# Print 1st row values and types
+#Print 1st row values and types
 #
 from xlrd.sheet import ctype_text
-#f = open('example.txt', 'w')
-#print('(Column #) type:value')
+f = open('example.txt', 'w')
+print('(Column #) type:value')
 for idx, cell_obj in enumerate(row):
     cell_type_str = ctype_text.get(cell_obj.ctype, 'unknown type')
-    #print('(%s) %s %s' % (idx, cell_type_str, cell_obj.value))
-   # f.write(cell_obj.value+"\n")
+    print('(%s) %s %s' % (idx, cell_type_str, cell_obj.value))
+    f.write(cell_obj.value+"\n")
     print(cell_obj.value)
-exampl = open('example.txt', 'r')#список с примером
-examplR=exampl.read()
+# exampl = open('example.txt', 'r')#список с примером
+# examplR=exampl.read()
 
 #print(examplR)
 
@@ -57,4 +63,4 @@ examplR=exampl.read()
 #     for col_idx in range(0, num_cols):  # Iterate through columns
 #         cell_obj = xl_sheet.cell(row_idx, col_idx)  # Get cell object by row, col
 #         print ('Column: [%s] cell_obj: [%s]' % (col_idx, cell_obj))
-exampl.close()
+#exampl.close()
